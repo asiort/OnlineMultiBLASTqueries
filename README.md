@@ -16,6 +16,8 @@ Does multiple nucleotidic | aminoacidic BLAST queries from a given multiFASTA an
 - Each sequence must have unique name (header)
 
 ## Script options:
+`python3 onlineMultiBLASTqueries.py -p <driver-path> -d <in-path> -t <int> -o <out-path> -f nucletotide|protein`
+
 - `-p --driverpath DRIVERPATH`
   - The ChromeDriver path (Optional). Default path: usr/bin/chromedrive
 - `-d --dir IN_FILE`
@@ -25,4 +27,8 @@ Does multiple nucleotidic | aminoacidic BLAST queries from a given multiFASTA an
 - `-O --outfile OUT_FILE`
   - Output file.
 - `-f --format {nucleotide, protein}`
-  - Sequence type: "nucleotide" | "protein"..
+  - Sequence type: "nucleotide" | "protein".
+ 
+Example of bash execution:
+
+`./onlineMultiBLASTqueries.py -p driverpath/chromedriver -d myFastas/multiFasta.fa -t 4 -o myResults.txt -f nucletotide`

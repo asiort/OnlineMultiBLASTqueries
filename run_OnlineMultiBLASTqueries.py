@@ -300,7 +300,8 @@ def main():
     if args.driverpath:
         driver_path = args.driverpath
     else:
-        driver_path = "/usr/bin/chromedriver"
+        path = os.getcwd()
+        driver_path = path+'/SeleniumDriver/chromedriver'
 
     """
     We obtain the dic

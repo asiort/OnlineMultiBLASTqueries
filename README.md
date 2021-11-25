@@ -1,5 +1,5 @@
 # OnlineMultiBLASTqueries
-Does multiple nucleotidic | aminoacidic BLAST queries from a given multiFASTA and write the output with the results. 
+Does multiple nucleotidic | aminoacidic sequence BLAST queries from a given multiFASTA and write the output with the results. 
 - The queries are parallelized using Threads. 
 - Works using Selenium and ChromeDriver. 
 

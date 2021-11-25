@@ -1,6 +1,6 @@
 """
 This script does multiple nucleotidic|aminoacidic BLAST queries from a given multiFASTA and write the output with the results. 
-The queries are parallelizeds using Threads. 
+The queries are parallelized using Threads. 
 
 @Dependencies Selenium and ChromeDrive  
 @Author Asier Ortega Legarreta
@@ -219,7 +219,7 @@ def do_query_nuc(protein, fasta_dic, driver_path):
     return fasta_dic
 
 
-def gestionar(list_protein, start, end, fasta_dic, driver_path, format):
+def manage(list_protein, start, end, fasta_dic, driver_path, format):
     """
     Distribute all the amount of queries using threads. 
 
@@ -335,7 +335,7 @@ def main():
 
     for task in range(n_threads):
         if not task == n_threads-1: ## Not last thread
-            t.append(Thread(target=gestionar, args=(list_protein, start, end, fasta_dic, driver_path, format)))
+            t.append(Thread(target=manage, args=(list_protein, start, end, fasta_dic, driver_path, format)))
             t[task].start()
             aux = end
             start = end
@@ -343,7 +343,7 @@ def main():
 
         else:
             end += remainder
-            t.append(Thread(target=gestionar, args=(list_protein, start, end, fasta_dic, driver_path, format)))
+            t.append(Thread(target=manage, args=(list_protein, start, end, fasta_dic, driver_path, format)))
             t[task].start()
 
     for task in range(n_threads):

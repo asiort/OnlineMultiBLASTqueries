@@ -3,7 +3,7 @@ Does multiple nucleotidic | aminoacidic BLAST queries from a given multiFASTA an
 - The queries are parallelized using Threads. 
 - Works using Selenium and ChromeDriver. 
 
-## Prerequisites:
+## Requeriments:
  - Python Installed (Recommended version 3.8 or above)
  - Pip Package Manager
  - Selenium library (use `pip install selenium`)

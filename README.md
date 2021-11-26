@@ -35,7 +35,7 @@ Example of bash execution:
 ```bash
 python3 onlineMultiBLASTqueries.py -p driverpath/chromedriver -d myFastas/multiFasta.fa -t 4 -o myResults.txt -f nucletotide
 ```
-### Move chromedriver to the driver default path 
+### Move the chromedriver to the default path 
 ```bash
 sudo mv path/to/chromedriver usr/bin
 ```

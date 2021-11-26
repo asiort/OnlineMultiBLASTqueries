@@ -21,7 +21,7 @@ def arguments():
                              ./multiBLAST.py -p driverpath/chromedriver -d myFastas/multiFasta.fa -t 4 -o myResults.txt -f nucletotide")
     parser.add_argument('-p', '--driverpath', dest='driverpath', 
                            action = 'store', required=False , 
-                           help='The ChromeDriver path (Optional) Default path: chromedriver/chromedriver.')
+                           help='The ChromeDriver path (Optional) Default path: /usr/bin/chromedriver.')
     parser.add_argument('-d', '--dir', dest='in_file', 
                            action = 'store', required=True , 
                            help='MultiFASTA file.')

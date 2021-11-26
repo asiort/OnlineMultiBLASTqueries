@@ -6,6 +6,7 @@ The queries are parallelized using Threads.
 @Author Asier Ortega Legarreta
 @Date 2021/11/25
 @mail asierortega20@gmail.com
+@github github.com/asiort
 """
 
 from threading import Thread

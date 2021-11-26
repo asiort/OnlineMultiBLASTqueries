@@ -16,7 +16,9 @@ Does multiple nucleotidic | aminoacidic sequence BLAST queries in the NCBI BLAST
 - Each sequence must have unique name (header)
 
 ## Script options:
-`python3 onlineMultiBLASTqueries.py -p <driver-path> -d <in-path> -t <int> -o <out-path> -f nucletotide|protein`
+```bash
+python3 onlineMultiBLASTqueries.py -p <driver-path> -d <in-path> -t <int> -o <out-path> -f nucletotide|protein
+```
 
 - `-p --driverpath DRIVERPATH`
   - The ChromeDriver path (Optional). Default path: usr/bin/chromedrive
@@ -30,5 +32,6 @@ Does multiple nucleotidic | aminoacidic sequence BLAST queries in the NCBI BLAST
   - Sequence type: "nucleotide" | "protein".
  
 Example of bash execution:
-
-`./onlineMultiBLASTqueries.py -p driverpath/chromedriver -d myFastas/multiFasta.fa -t 4 -o myResults.txt -f nucletotide`
+```bash
+python3 onlineMultiBLASTqueries.py -p driverpath/chromedriver -d myFastas/multiFasta.fa -t 4 -o myResults.txt -f nucletotide
+```

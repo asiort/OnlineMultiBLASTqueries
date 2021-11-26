@@ -14,9 +14,6 @@ from myFunctions.functions import arguments, open_fasta, manage, write_output
 
 def main():
     """
-    Main program
-    """
-    """
     Obtain the arguments and define parameters
     """
     args = arguments()

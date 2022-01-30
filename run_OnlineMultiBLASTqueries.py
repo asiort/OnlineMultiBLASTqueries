@@ -5,7 +5,7 @@ The queries are parallelized using Threads.
 @Dependencies Selenium and ChromeDrive  
 @Author Asier Ortega Legarreta
 @Date 2021/11/25
-@mail asierortega20@gmail.com
+@email asierortega20@gmail.com
 @github github.com/asiort
 """
 
@@ -14,9 +14,6 @@ from myFunctions.functions import arguments, open_fasta, manage, write_output
 
 def main():
     """
-    Main program
-    """
-    """
     Obtain the arguments and define parameters
     """
     args = arguments()
@@ -24,6 +21,11 @@ def main():
     path_fasta = args.in_file
     file_out = args.out_file
     format = args.format
+
+    if args.hide:
+        hide = args.hide
+    else:
+        hide = "yes"
 
     ## Selenium Driver path
     if args.driverpath:
@@ -64,7 +66,7 @@ def main():
 
     for task in range(n_threads):
         if not task == n_threads-1: ## Not last thread
-            t.append(Thread(target=manage, args=(list_protein, start, end, fasta_dic, driver_path, format)))
+            t.append(Thread(target=manage, args=(list_protein, start, end, fasta_dic, driver_path, format, hide)))
             t[task].start()
             aux = end
             start = end
@@ -72,7 +74,7 @@ def main():
 
         else:
             end += remainder
-            t.append(Thread(target=manage, args=(list_protein, start, end, fasta_dic, driver_path, format)))
+            t.append(Thread(target=manage, args=(list_protein, start, end, fasta_dic, driver_path, format, hide)))
             t[task].start()
 
     for task in range(n_threads):

@@ -1,0 +1,5 @@
+Header	Description	Scientific name	Max score	Total score	Query cover	E value 	Percentage identity 	Accession length
+Rattus_norvegicus | Rattus norvegicus heat shock 20kDa protein (Loc192245), mRNA	Rattus norvegicus heat shock protein family B (small) member 6 (Hspb6), mRNA	Rattus norvegicus	2420	2420	100%	0.0	100.00%	1310	
+Homo_sapiens | Homo sapiens cDNA FLJ32389 fis, clone SKMUS1000138, highly similar to HEATSHOCK 20 KDA LIKEPROTEIN P20.	Homo sapiens cDNA FLJ32389 fis, clone SKMUS1000138, highly similar to HEAT-SHOCK 20 KDA LIKE-PROTEIN P20	Homo sapiens	2691	2691	100%	0.0	100.00%	1457	
+Mus_musculus | Mus musculus similar to heat shock 20kDa protein (LOC243912), mRNA.	Mus musculus heat shock protein, alpha-crystallin-related, B6 (Hspb6), transcript variant 1, mRNA	Mus musculus	2418	2418	100%	0.0	100.00%	1346	
+Bos_taurus | Bos taurus alpha Bcrystallin (CRYAB) mRNA, complete cds.	Bos taurus crystallin alpha B (CRYAB), mRNA	Bos taurus	1168	1168	100%	0.0	100.00%	632	

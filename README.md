@@ -17,7 +17,7 @@ Does multiple nucleotidic | aminoacidic sequence BLAST queries in the NCBI BLAST
 
 ## Script options:
 ```bash
-python3 run_OnlineMultiBLASTqueries.py -p <driver-path> -d <in-path> -t <int> -o <out-path> -f nucletotide|protein
+python3 run_OnlineMultiBLASTqueries.py -p <driver-path> -d <in-path> -t <int> -o <out-path> -f <nucletotide|protein> -hi <yes|no>
 ```
 
 - `-p --driverpath DRIVERPATH`
@@ -30,10 +30,12 @@ python3 run_OnlineMultiBLASTqueries.py -p <driver-path> -d <in-path> -t <int> -o
   - Output file.
 - `-f --format {nucleotide, protein}`
   - Sequence type: "nucleotide" | "protein".
+- `-hi --hide {yes, no}`
+  - Hide the browser. Default yes.
  
 Example of bash execution:
 ```bash
-python3 run_onlineMultiBLASTqueries.py -p driverpath/chromedriver -d myFastas/multiFasta_example.fa -t 4 -o myResults.txt -f nucletotide
+python3 run_OnlineMultiBLASTqueries.py -d test/test_nucleotide.fa -o output_example.txt -f nucleotide -hi yes -t 4
 ```
 ### Move the chromedriver to the default path 
 ```bash

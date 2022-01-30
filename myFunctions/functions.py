@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
@@ -22,8 +23,8 @@ def arguments():
     parser.add_argument('-p', '--driverpath', dest='driverpath', 
                            action = 'store', required=False , 
                            help='The ChromeDriver path (Optional) Default path: /usr/bin/chromedriver.')
-    parser.add_argument('-d', '--dir', dest='in_file', 
-                           action = 'store', required=True , 
+    parser.add_argument('-d', '--in_file', dest='in_file', 
+                           action = 'store', required=True, 
                            help='MultiFASTA file.')
     parser.add_argument('-t', '--threads', dest='threads',
                        action = 'store', required=False,
@@ -35,6 +36,10 @@ def arguments():
                        action = 'store', required=True,
                        choices=['nucleotide', 'protein'],
                        help = 'Sequence type: "nucleotide" | "protein".')
+    parser.add_argument('-hi', '--hide', dest='hide',
+                       action = 'store', required=False,
+                       choices=['yes', 'no'],
+                       help = 'Browser hide option. Default option: yes')
 
     try:
         args = parser.parse_args()
@@ -77,7 +82,7 @@ def open_fasta(file_path):
     return fasta_dic
 
 
-def do_query_prot(protein, fasta_dic, driver_path):
+def do_query_prot(protein, fasta_dic, driver_path, hide):
     """
     Does the aminoacidic query sequence and store the results in the dictionary. 
 
@@ -97,7 +102,10 @@ def do_query_prot(protein, fasta_dic, driver_path):
     fasta_dic : dict
         Dictionary where the results are stored.
     """
-
+    driver_options = Options()
+    if hide == "yes":
+        driver_options.add_argument("--headless")
+        
     driver = webdriver.Chrome(driver_path)
     driver.get('https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastp&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome')
     query = fasta_dic[protein][0]
@@ -141,7 +149,7 @@ def do_query_prot(protein, fasta_dic, driver_path):
     return fasta_dic
 
 
-def do_query_nuc(protein, fasta_dic, driver_path):
+def do_query_nuc(protein, fasta_dic, driver_path, hide):
     """
     Does the nucleotidic query sequence and store the results in the dictionary. 
 
@@ -161,8 +169,11 @@ def do_query_nuc(protein, fasta_dic, driver_path):
     fasta_dic : dict
         Dictionary where the results are stored.
     """
+    driver_options = Options()
+    if hide == "yes":
+        driver_options.add_argument("--headless")
 
-    driver = webdriver.Chrome(driver_path)
+    driver = webdriver.Chrome(driver_path, options=driver_options)
     driver.get('https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome')
     query = fasta_dic[protein][0]
     driver.find_element(By.XPATH, '//*[@id="seq"]').send_keys(query)
@@ -199,14 +210,14 @@ def do_query_nuc(protein, fasta_dic, driver_path):
         ## In case an error ocurred
         print("An error with: "+protein+". Repeating the search...")
         fasta_dic[protein] = [fasta_dic[protein][0]]
-        fasta_dic = do_query_prot(protein, fasta_dic, driver_path)
+        fasta_dic = do_query_nuc(protein, fasta_dic, driver_path)
 
     driver.quit() ## Close the driver
 
     return fasta_dic
 
 
-def manage(list_protein, start, end, fasta_dic, driver_path, format):
+def manage(list_protein, start, end, fasta_dic, driver_path, format, hide):
     """
     Distribute all the amount of queries using threads. 
 
@@ -237,11 +248,12 @@ def manage(list_protein, start, end, fasta_dic, driver_path, format):
     for tarea in range(start, end):
         protein = list_protein[tarea]
         if format == "protein":
-            fasta_dic = do_query_prot(protein, fasta_dic, driver_path) ## Aminoacidic sequence query
+            fasta_dic = do_query_prot(protein, fasta_dic, driver_path, hide) ## Aminoacidic sequence query
         else:
-            fasta_dic = do_query_nuc(protein, fasta_dic, driver_path) ## Nucleotidic sequence query
+            fasta_dic = do_query_nuc(protein, fasta_dic, driver_path, hide) ## Nucleotidic sequence query
 
     return fasta_dic
+
 
 def write_output(file_out, fasta_dic):
     """
@@ -271,3 +283,5 @@ def write_output(file_out, fasta_dic):
         fich_out.write("\n")
 
     fich_out.close()
+
+    return None

@@ -17,7 +17,7 @@ Does multiple nucleotidic | aminoacidic sequence BLAST queries in the NCBI BLAST
 
 ## Script options:
 ```bash
-python3 run_OnlineMultiBLASTqueries.py -p <driver-path> -d <in-path> -t <int> -o <out-path> -f <nucletotide|protein> -hi <yes|no>
+python3 run_OnlineMultiBLASTqueries.py -p <driver-path> -d <in-path> -t <int> -o <out-path> -f <nucleotide|protein> -hi <yes|no>
 ```
 
 - `-p --driverpath DRIVERPATH`
